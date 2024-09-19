@@ -1,0 +1,122 @@
+
+geodata-mode: true
+geox-url:
+  geoip: "https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geoip.dat"
+  
+proxy-groups:
+  - icon: https://mirror.ghproxy.com/https://raw.githubusercontent.com/Orz-3/mini/master/Color/Static.png
+    include-all: true
+    exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
+    name: PROXY
+    type: select
+    proxies:
+      - 低延迟
+      - HK 低延迟
+      - SG 低延迟
+      - JP 低延迟
+      - US 低延迟
+  - icon: https://mirror.ghproxy.com/https://raw.githubusercontent.com/Orz-3/mini/master/Color/Urltest.png
+    include-all: true
+    exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
+    name: 低延迟
+    type: url-test
+    interval: 300
+  - icon: https://mirror.ghproxy.com/https://raw.githubusercontent.com/Orz-3/mini/master/Color/OpenAI.png
+    name: AIGC
+    type: select
+    proxies:
+      - SG 低延迟
+      - JP 低延迟
+      - US 低延迟
+  - icon: https://mirror.ghproxy.com/https://raw.githubusercontent.com/Orz-3/mini/master/Color/Telegram.png
+    name: Telegram
+    type: select
+    proxies:
+      - HK 低延迟
+      - SG 低延迟
+      - JP 低延迟
+      - US 低延迟
+  - icon: https://mirror.ghproxy.com/https://raw.githubusercontent.com/Orz-3/mini/master/Color/Google.png
+    name: Google
+    type: select
+    proxies:
+      - HK 低延迟
+      - SG 低延迟
+      - JP 低延迟
+      - US 低延迟
+  - icon: https://mirror.ghproxy.com/https://raw.githubusercontent.com/Orz-3/mini/master/Color/HK.png
+    include-all: true
+    exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
+    filter: (?i)香港|Hong Kong|HK|🇭🇰
+    name: HK 低延迟
+    type: url-test
+    interval: 300
+  - icon: https://mirror.ghproxy.com/https://raw.githubusercontent.com/Orz-3/mini/master/Color/SG.png
+    include-all: true
+    exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
+    filter: (?i)新加坡|Singapore|🇸🇬
+    name: SG 低延迟
+    type: url-test
+    interval: 300
+  - icon: https://mirror.ghproxy.com/https://raw.githubusercontent.com/Orz-3/mini/master/Color/JP.png
+    include-all: true
+    exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
+    filter: (?i)日本|Japan|🇯🇵
+    name: JP 低延迟
+    type: url-test
+    interval: 300
+  - icon: https://mirror.ghproxy.com/https://raw.githubusercontent.com/Orz-3/mini/master/Color/US.png
+    include-all: true
+    exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
+    filter: (?i)美国|USA|🇺🇸
+    name: US 低延迟
+    type: url-test
+    interval: 300
+  - icon: https://mirror.ghproxy.com/https://raw.githubusercontent.com/Orz-3/mini/master/Color/Global.png
+    include-all: true
+    exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
+    proxies:
+      - PROXY
+      - 低延迟
+      - AIGC
+      - Telegram
+      - Google
+      - HK 低延迟
+      - SG 低延迟
+      - JP 低延迟
+      - US 低延迟
+    name: GLOBAL
+    type: select
+rule-providers:
+  cn:
+    behavior: domain
+    interval: 86400
+    path: ./provider/rule-set/cn_domain.yaml
+    type: http
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/cn.yaml"
+    
+rules:
+  - RULE-SET,cn,DIRECT
+  - GEOSITE,category-ads-all,REJECT
+  - GEOSITE,private,DIRECT
+  - GEOSITE,youtube,PROXY
+  - GEOSITE,google,PROXY
+  - GEOSITE,twitter,PROXY
+  - GEOSITE,pixiv,PROXY
+  - GEOSITE,category-scholar-!cn,PROXY
+  - GEOSITE,biliintl,PROXY
+  - GEOSITE,onedrive,DIRECT
+  - GEOSITE,microsoft@cn,DIRECT
+  - GEOSITE,apple-cn,DIRECT
+  - GEOSITE,steam@cn,DIRECT
+  - GEOSITE,category-games@cn,DIRECT
+  - GEOSITE,geolocation-!cn,PROXY
+  - GEOSITE,cn,DIRECT
+
+  #GEOIP规则
+  - GEOIP,private,DIRECT,no-resolve
+  - GEOIP,telegram,PROXY
+  - GEOIP,JP,PROXY
+  - GEOIP,CN,DIRECT
+  - DST-PORT,80/8080/443/8443,PROXY
+  - MATCH,DIRECT
