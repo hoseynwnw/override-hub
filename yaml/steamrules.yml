@@ -1,0 +1,15 @@
+# Profile Enhancement Merge Template for Clash Verge
+
++rules: 
+  - DOMAIN-SUFFIX,steam-chat.com,GLOBAL
+  - DOMAIN-SUFFIX,steamcommunity.com,GLOBAL
+  - DOMAIN-SUFFIX,steampowered.com,GLOBAL
+  - DOMAIN-SUFFIX,steamstatic.com,DIRECT
+  - DOMAIN-SUFFIX,dota2.com.cn,GLOBAL
+  - DOMAIN-SUFFIX,steamserver.net,DIRECT
+  - DOMAIN-SUFFIX,akamaihd.net,DIRECT
+  - DOMAIN-SUFFIX,api.steampowered.com,DIRECT
+  - DOMAIN-SUFFIX,*.cm.steampowered.com,DIRECT
+  - DOMAIN-SUFFIX,steamcontent.com,DIRECT
+  - DOMAIN-SUFFIX,akamaized.net,DIRECT
+  - DOMAIN-SUFFIX,steamchina.com,DIRECT
